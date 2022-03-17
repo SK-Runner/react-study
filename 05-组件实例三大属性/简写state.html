@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>组件属性——state</title>
+</head>
+<body>
+  <div id="app"></div>
+  
+  <script src="../依赖包/旧版本/react.development.js"></script>
+  <script src="../依赖包/旧版本/react-dom.development.js"></script>
+  <script src="../依赖包/旧版本/babel.min.js"></script>
+  <script type="text/babel">
+class Weather extends React.Component {
+  // 🌟🌟🌟 改进1:不需要在构造函数中定义this.state，在构造函数外部写入的对象，都是实例对象的属性
+  state = {
+    weather: '阳光明媚',
+    isHot: true,
+  }
+  // 🌟🌟🌟 改进2:箭头函数中的this有定义函数时所处上下文决定，所以this直接是Weather的实例对象
+  updateWeather = ()=>{
+    let Hot = this.state.isHot;
+    this.setState({
+      isHot: !Hot,
+      weather : Hot ? '风雨交加' : '阳光明媚', // Hot是原来的状态，当Hot为true时，setState将isHot变为false，所以weather需要变成‘风雨交加’
+    })
+  }
+  render(){
+    let {isHot, weather} = this.state;
+    // 这里不能写this.updateWeather(),因为这里只是放置函数的引用而不是函数的调用结果，写了()，还没有click动作，函数就会执行，
+    return <h2 onClick={this.updateWeather}>今天天气{weather}，{isHot?'很热':'很冷'}</h2>
+  }
+}
+    ReactDOM.render(<Weather/>,document.getElementById('app'));
+  </script>
+</body>
+</html>

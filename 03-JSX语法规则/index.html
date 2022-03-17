@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello React</title>
+  <style>
+    .title-name{
+      color: aliceblue;
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script src="../依赖包/旧版本/react.development.js"></script>
+  <script src="../依赖包/旧版本/react-dom.development.js"></script>
+  <script src="../依赖包/旧版本/babel.min.js"></script>
+  <script type="text/babel">
+    /**
+     * JSX 的语法规则：
+     *  1、定义虚拟DOM时，不能写引号，可以使用()将所写内容进行包裹，()内部可以使用缩进整理结构
+     *  2、标签中混入【Js表达式】时，需要使用{}包裹
+     *  3、样式的类名不能用class，而是使用className代替
+     *  4、内联样式，使用 style={{key:value,key2:value2}} 的形式去写。外层括号代表内部是js表达式，内层括号代表这是一个object类型数据
+     *  5、必须只有一个根标签，不能有多个根并行（类似Vue2模版的写法）
+     *  6、标签必须闭合，单标签最后必须使用 /
+     *  7、标签首字母规则：
+     *    （1）若小写字母开头，标签代表HTML同名元素，若HTML不存在此元素，会报错；
+     *    （2）若大写字母开头，React会去渲染对应组件，若组件没有定义，会报错；
+     */
+    let id = 'title-name'
+    let text = 'Hello React'
+    let VDom = (
+      <div className="container" style={{backgroundColor:'orange',fontSize:'23px'}}>
+        <div className="title">
+          <p className={id}>{text}</p>
+        </div>
+        <input type="text" />
+      </div>
+    );
+    // 调用 ReacrDOM的render方法，将虚拟dom渲染到app节点中
+    ReactDOM.render(VDom,document.getElementById('app'));
+  </script>
+</body>
+</html>

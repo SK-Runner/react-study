@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>组件属性——state</title>
+</head>
+<body>
+  <div id="app"></div>
+  
+  <script src="../依赖包/旧版本/react.development.js"></script>
+  <script src="../依赖包/旧版本/react-dom.development.js"></script>
+  <script src="../依赖包/旧版本/babel.min.js"></script>
+  <script type="text/babel">
+    class Weather extends React.Component {
+
+      constructor(props) {
+        super(props)
+        this.state = {
+          weather: '阳光明媚',
+          isHot: true,
+        }
+        // 🌟🌟🌟 改变实例对象中updateWeather函数中的this指向，将this由之前的原型对象改为实例对象
+        this.updateWeather = this.updateWeather.bind(this);
+      }
+
+      updateWeather() {
+        // 🌟🌟 updateWeather放在那里？ ---->  Weather 的原型对象上，供实例使用
+        // 🌟🌟 由于updateWeather作为click的回调，不是通过实例调用，而是直接调用。
+        // 🌟🌟 类中的方法默认开启局部严格模式，this为undefined
+        console.log(this);
+
+        let Hot = this.state.isHot
+        // 🌟🌟 不能直接更改state中的数据，必须使用setState
+        // this.state.isHot = !this.state.isHot;
+        // this.state.weather = this.state.isHot ? '阳光明媚' : '风雨交加';
+        this.setState({
+          isHot: !Hot,
+          weather : Hot ? '风雨交加' : '阳光明媚', // Hot是原来的状态，当Hot为true时，setState将isHot变为false，所以weather需要变成‘风雨交加’
+        })
+      }
+
+      render(){
+        let {isHot, weather} = this.state;
+        // 这里不能写this.updateWeather(),因为这里只是放置函数的引用而不是函数的调用结果，写了()，还没有click动作，函数就会执行，
+        return <h2 onClick={this.updateWeather}>今天天气{weather}，{isHot?'很热':'很冷'}</h2>
+      }
+    }
+    ReactDOM.render(<Weather/>,document.getElementById('app'));
+  </script>
+</body>
+</html>

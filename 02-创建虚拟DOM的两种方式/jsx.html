@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello React</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script src="../依赖包/旧版本/react.development.js"></script>
+  <script src="../依赖包/旧版本/react-dom.development.js"></script>
+  <script src="../依赖包/旧版本/babel.min.js"></script>
+  <script type="text/babel">
+    // 需求：实现div>div>p结构
+    let VDom = (
+      <div className="container">
+        <div className="title">
+          <p className="title-name">Hello React</p>
+        </div>
+      </div>
+    );
+    // 调用 ReacrDOM的render方法，将虚拟dom渲染到app节点中
+    ReactDOM.render(VDom,document.getElementById('app'));
+  </script>
+</body>
+</html>

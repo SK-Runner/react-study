@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>函数式组件</title>
+</head>
+<body>
+  <div id="app"></div>
+  
+  <script src="../依赖包/旧版本/react.development.js"></script>
+  <script src="../依赖包/旧版本/react-dom.development.js"></script>
+  <script src="../依赖包/旧版本/babel.min.js"></script>
+  <script type="text/babel">
+    function MyComponent() {
+      return <h1>这是函数式组件，用于简单组件的封装 </h1>
+    }
+    // 6、调用 ReacrDOM的render方法，将虚拟dom渲染到app节点中
+    ReactDOM.render(<MyComponent />,document.getElementById('app'));
+  </script>
+</body>
+</html>

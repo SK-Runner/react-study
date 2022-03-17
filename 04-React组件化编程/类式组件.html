@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>类式组件</title>
+</head>
+<body>
+  <div id="app"></div>
+  
+  <script src="../依赖包/旧版本/react.development.js"></script>
+  <script src="../依赖包/旧版本/react-dom.development.js"></script>
+  <script src="../依赖包/旧版本/babel.min.js"></script>
+  <script type="text/babel">
+    // 1、必须继承React的Component类
+    class MyComponent extends React.Component {
+      // 2、必须写render
+      render(){
+        // render是放在哪里的？----> MyComponent的原型对象上，供【实例使用】
+        // render中的this是谁？----> MyComponent的实例对象 <=> MyComponent组件实例对象
+        console.log(this);
+        // 3、必须有返回
+        return <h1>这是类式组件，用于复杂组件的封装 </h1>
+      }
+    }
+    /*
+      执行ReactDOM.render(<MyComponent/>,document.getElementById('app'));之后发生了什么？
+        1、ReactDOM.render解析组件标签，找到 MyComponent 类
+        2、发现组件是类式组件，随后new出来该类实例对象，通过实例调用render方法
+        3、将render方法返回的虚拟DOM，转为真实DOM，随后呈现在页面上
+     */
+    ReactDOM.render(<MyComponent/>,document.getElementById('app'));
+  </script>
+</body>
+</html>

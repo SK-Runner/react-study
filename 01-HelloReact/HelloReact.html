@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello React</title>
+</head>
+<body>
+  <div id="app">
+
+  </div>
+  <!-- 1、引入 React 核心包 -->
+  <script src="../依赖包/旧版本/react.development.js"></script>
+  <!-- 2、引入 React Dom 扩展包 -->
+  <script src="../依赖包/旧版本/react-dom.development.js"></script>
+  <!-- 3、引入Babel，用来编译 JSX 文件 -->
+  <script src="../依赖包/旧版本/babel.min.js"></script>
+  <!-- 4、写 JSX 代码，注意type是text/babel，最终要浏览器编译为 JSX -->
+  <script type="text/babel">
+    // 5、定义虚拟DOM，JSX 允许直接赋予变量DOM结构，此处不能用双引号，因为VDom不是字符串
+    let VDom = <h1>Hello React</h1>;
+    // 6、调用 ReacrDOM的render方法，将虚拟dom渲染到app节点中
+    ReactDOM.render(VDom,document.getElementById('app'));
+  </script>
+</body>
+</html>
